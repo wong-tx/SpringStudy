@@ -4,6 +4,7 @@ import com.wongtx.demomybatis.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -20,4 +21,8 @@ public interface UserMapper {
     // 测试是否字符串需要‘' -- 都可以
     @Select("select * from user where password = '2'")
     List<User> find();
+
+    // 测试修改  返回对象，失败
+    @Update("update user set phone = '1005'  where password = 1")
+    int updateUser();
 }

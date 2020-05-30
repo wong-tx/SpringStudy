@@ -5,10 +5,7 @@ import com.wongtx.demomybatis.entity.User;
 import com.wongtx.demomybatis.service.UserService;
 import com.wongtx.demomybatis.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +30,11 @@ public class UserController {
     public  R find(){
         List<User> user = userService.find();
         return R.setOK("新",JSON.toJSONString(user));
+    }
+
+    @PutMapping("/updateUser.do")
+    public R updateUser(){
+        User user = userService.updateUser();
+        return  R.setOK("修改",JSON.toJSONString(user));
     }
 }

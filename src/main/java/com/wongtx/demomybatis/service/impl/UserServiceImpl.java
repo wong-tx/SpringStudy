@@ -30,4 +30,14 @@ public class UserServiceImpl implements UserService {
         List<User> user = userMapper.find();
         return user;
     }
+
+    @Override
+    public User updateUser() {
+        int  i = userMapper.updateUser();
+        User user = new User();
+        if (i > 0){
+            user.setMsg("成功修改");
+        }
+        return user;
+    }
 }
