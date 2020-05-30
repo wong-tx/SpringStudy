@@ -2,6 +2,8 @@ package com.wongtx.demomybatis.service;
 
 import com.wongtx.demomybatis.entity.User;
 
+import java.util.List;
+
 /**
  * @author wongtx
  * @version 1.0
@@ -10,4 +12,6 @@ import com.wongtx.demomybatis.entity.User;
 public interface UserService {
 
     void  save(User user);
+
+    List<User> find();
 }

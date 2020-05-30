@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @author wongtx
  * @version 1.0
@@ -14,12 +16,18 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class userServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
     @Override
     public void save(User user) {
         userMapper.save(user);
+    }
+
+    @Override
+    public List<User> find() {
+        List<User> user = userMapper.find();
+        return user;
     }
 }
