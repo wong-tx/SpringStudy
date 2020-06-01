@@ -34,8 +34,8 @@ public class UserController {
     }
 
     @PutMapping("/updateUser.do")
-    public R updateUser(){
-        User user = userService.updateUser();
+    public R updateUser(@RequestBody User user1){
+        User user = userService.updateUser(user1);
         return  R.setOK("修改",JSON.toJSONString(user));
     }
 
@@ -51,5 +51,24 @@ public class UserController {
         User dto = userService.findById(user);
         return dto;
 
+    }
+
+    @GetMapping("/findAll")
+    public  List<User> findAll(@RequestParam String string){
+        System.out.println(string);
+        List<User> all = userService.findAll(string);
+        return all;
+    }
+
+    @PutMapping("/put.do")
+    public User updateSecond(@RequestBody User user){
+     user = userService.updateSecont(user);
+     return user;
+    }
+
+    @PostMapping("/saveSecond.do")
+    public User saveSecond(@RequestBody User user){
+     user = userService.saveSecond(user);
+     return user;
     }
 }

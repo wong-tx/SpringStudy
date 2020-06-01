@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wongtx.demomybatis.mapper.UserMapper" >
+
+    <!-- 获取记录 -->
+    <select id="findAll" resultType="com.wongtx.demomybatis.entity.User">
+     SELECT *
+     FROM t_user
+      where id in (${str})
+    </select>
+
+
+
+    <update id="updateSecond">
+        update t_user set phone = #{user.phone}  where id = #{id}
+    </update>
+
+    <insert id="saveSecond">
+        insert into t_user (phone,password) values (#{phone},#{password})
+    </insert>
+</mapper>

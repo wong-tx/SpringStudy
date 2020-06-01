@@ -36,13 +36,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser() {
-        int  i = userMapper.updateUser();
-        User user = new User();
+    public User updateUser(User user) {
+        int  i = userMapper.updateUser(user);
+        User user1 = new User();
         if (i > 0){
-            user.setMsg("成功修改");
+            user1.setMsg("成功修改");
         }
-        return user;
+        return user1;
     }
 
     @Override
@@ -53,5 +53,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(User user) {
         return userMapper.findUserbyId(user.getId());
+    }
+
+    @Override
+    public List<User> findAll(String str) {
+       return userMapper.findAll(str);
+    }
+
+    @Override
+    public User updateSecont(User user) {
+        int i = userMapper.updateSecond(user,1);
+        return user;
+    }
+
+    @Override
+    public User saveSecond(User user) {
+        int i = userMapper.saveSecond(user);
+        return user;
     }
 }

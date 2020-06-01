@@ -15,9 +15,15 @@ public interface UserService {
 
     List<User> find();
 
-    User updateUser();
+    User updateUser(User user);
 
     boolean findUser();
 
     User findById(User user);
+
+    List<User> findAll(String str);
+
+    User updateSecont(User user);
+
+    User saveSecond(User user);
 }
