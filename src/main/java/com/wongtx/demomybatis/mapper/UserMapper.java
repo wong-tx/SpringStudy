@@ -15,7 +15,12 @@ import java.util.List;
  */
 public interface UserMapper {
 
-    @Insert("insert into user (phone ,password) values (#{phone},'2')")
+    /**
+     * 返回主键测试 @Options
+     * @param user
+     * @return
+     */
+    @Insert("insert into user (phone ,password) values (#{phone},'1234')")
 //    @Options(useGeneratedKeys=true,keyProperty="id")
     void save (User user);
     // 测试是否字符串需要‘' -- 都可以

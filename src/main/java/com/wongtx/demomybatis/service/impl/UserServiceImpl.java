@@ -1,5 +1,6 @@
 package com.wongtx.demomybatis.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.wongtx.demomybatis.entity.User;
 import com.wongtx.demomybatis.mapper.UserMapper;
 import com.wongtx.demomybatis.service.UserService;
@@ -24,6 +25,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         userMapper.save(user);
+        System.err.println(JSON.toJSONString(user));
+
     }
 
     @Override
