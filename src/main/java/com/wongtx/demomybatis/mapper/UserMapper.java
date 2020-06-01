@@ -25,4 +25,12 @@ public interface UserMapper {
     // 测试修改  返回对象，失败
     @Update("update user set phone = '1005'  where password = 1")
     int updateUser();
+
+    //测试boolean返回类型
+    @Select("select * from user where password = 1")
+    Boolean findUser();
+
+    //测试傳入和本身參數名不一致能否獲取
+    @Select("select * from user where id = #{userId}")
+    User findUserbyId(Integer userId);
 }

@@ -3,6 +3,7 @@ package com.wongtx.demomybatis.service.impl;
 import com.wongtx.demomybatis.entity.User;
 import com.wongtx.demomybatis.mapper.UserMapper;
 import com.wongtx.demomybatis.service.UserService;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,5 +40,15 @@ public class UserServiceImpl implements UserService {
             user.setMsg("成功修改");
         }
         return user;
+    }
+
+    @Override
+    public boolean findUser() {
+        return userMapper.findUser();
+    }
+
+    @Override
+    public User findById(User user) {
+        return userMapper.findUserbyId(user.getId());
     }
 }

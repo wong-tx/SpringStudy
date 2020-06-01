@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.wongtx.demomybatis.entity.User;
 import com.wongtx.demomybatis.service.UserService;
 import com.wongtx.demomybatis.vo.R;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,5 +37,19 @@ public class UserController {
     public R updateUser(){
         User user = userService.updateUser();
         return  R.setOK("修改",JSON.toJSONString(user));
+    }
+
+    @GetMapping("findUSer.do")
+    public  Boolean findUser(){
+        return   userService.findUser();
+
+    }
+
+    @GetMapping("findbyId.do")
+    public  User findUser(@RequestBody User user){
+        // @RequestBody 传递对象获取；否则获取不到
+        User dto = userService.findById(user);
+        return dto;
+
     }
 }

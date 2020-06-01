@@ -16,4 +16,8 @@ public interface UserService {
     List<User> find();
 
     User updateUser();
+
+    boolean findUser();
+
+    User findById(User user);
 }
