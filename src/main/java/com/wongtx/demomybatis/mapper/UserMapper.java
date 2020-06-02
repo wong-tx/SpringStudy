@@ -44,4 +44,7 @@ public interface UserMapper {
 
     // xml 新增
     int saveSecond(User user);
+
+    // xml tag
+    int saveThree(User user);
 }

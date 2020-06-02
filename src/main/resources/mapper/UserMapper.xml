@@ -15,7 +15,51 @@
         update t_user set phone = #{user.phone}  where id = #{id}
     </update>
 
+    <!--now() 传入时间-->
     <insert id="saveSecond">
-        insert into t_user (phone,password) values (#{phone},#{password})
+        insert into t_user (phone,password,insertdate) values (#{userPhone,jdbcType=VARCHAR},#{userPassWord,jdbcType=VARCHAR},now() )
+    </insert>
+<!--tag values便签下的字段与传入头一致-->
+    <insert id="saveThree" parameterType="com.wongtx.demomybatis.entity.User">
+        insert into t_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userPhone != null">
+                phone,
+            </if>
+
+            <if test="userPassWord != null">
+                password,
+            </if>
+            <if test="userMsg != null">
+                msg,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="createDate != null">
+                insertdate,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userPhone != null">
+                #{userPhone,jdbcType=VARCHAR},
+            </if>
+
+            <if test="userPassWord != null">
+                #{userPassWord,jdbcType=VARCHAR},
+            </if>
+            <if test="userMsg != null">
+                #{userMsg,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=BIT},
+            </if>
+
+            <if test="createDate != null">
+                #{createDate,jdbcType=DATE},
+            </if>
+
+        </trim>
     </insert>
 </mapper>

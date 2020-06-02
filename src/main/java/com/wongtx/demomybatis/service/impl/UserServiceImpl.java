@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
         int  i = userMapper.updateUser(user);
         User user1 = new User();
         if (i > 0){
-            user1.setMsg("成功修改");
+            user1.setUserMsg("成功修改");
         }
         return user1;
     }
@@ -69,6 +69,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User saveSecond(User user) {
         int i = userMapper.saveSecond(user);
+        return user;
+    }
+
+    @Override
+    public User saveThree(User user) {
+        int i = userMapper.saveThree(user);
         return user;
     }
 }

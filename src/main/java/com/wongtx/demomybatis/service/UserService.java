@@ -26,4 +26,6 @@ public interface UserService {
     User updateSecont(User user);
 
     User saveSecond(User user);
+
+    User saveThree(User user);
 }

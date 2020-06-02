@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -68,7 +69,14 @@ public class UserController {
 
     @PostMapping("/saveSecond.do")
     public User saveSecond(@RequestBody User user){
+//        user.setCreateDate(new Date());
      user = userService.saveSecond(user);
+     return user;
+    }
+
+    @PostMapping("/saveThree.do")
+    public User saveThree(@RequestBody User user){
+     user = userService.saveThree(user);
      return user;
     }
 }

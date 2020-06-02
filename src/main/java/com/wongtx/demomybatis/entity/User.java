@@ -2,6 +2,8 @@ package com.wongtx.demomybatis.entity;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @author wongtx
  * @version 1.0
@@ -10,7 +12,9 @@ import lombok.Data;
 @Data
 public class User {
     int id;
-    String phone;
-    String password;
-    String msg;
+    String userPhone;
+    String userPassWord;
+    String userMsg;
+    Date createDate;
+    byte sex;
 }
