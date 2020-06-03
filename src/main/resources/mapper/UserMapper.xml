@@ -62,4 +62,47 @@
 
         </trim>
     </insert>
+
+    <select id="findById" resultType="com.wongtx.demomybatis.entity.User">
+        select id,phone as userPhone,insertdate as createDate,msg as userMsg,password as userPassWord, sex from t_user where id = #{id}
+    </select>
+
+
+    <select id="findMap" resultType="map">
+        select id,phone as userPhone,insertdate as createDate,msg as userMsg,password as userPassWord, sex from t_user
+
+        where  insertdate &lt; #{da}
+    </select>
+    <select id="findByIdIn" resultType="com.wongtx.demomybatis.entity.User">
+
+        select id,phone as userPhone,insertdate as createDate,msg as userMsg,password as userPassWord, sex from t_user
+
+        where  id IN
+        <foreach collection="array" item="item" index="index"
+                 open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+
+
+    </select>
+
+    <insert id="insertforeach" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user
+        ( phone,password,msg)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.userPhone},
+            #{item.userPassWord},
+
+            #{item.userMsg}
+            )
+        </foreach>
+    </insert>
+
+
+    <select id="findByUserId" resultType="com.wongtx.demomybatis.entity.User">
+        select id,phone as userPhone,insertdate as createDate,msg as userMsg,password as userPassWord, sex from t_user
+        where msg = #{userMsg}
+    </select>
 </mapper>

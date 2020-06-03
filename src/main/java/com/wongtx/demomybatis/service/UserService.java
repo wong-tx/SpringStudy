@@ -3,6 +3,7 @@ package com.wongtx.demomybatis.service;
 import com.wongtx.demomybatis.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wongtx
@@ -28,4 +29,18 @@ public interface UserService {
     User saveSecond(User user);
 
     User saveThree(User user);
+
+    User findById(Integer id);
+
+    int bigSave();
+
+    int bigBigSave();
+
+    List findMap();
+
+    List foreach();
+
+    List<User> insertforeach(List<User> list);
+
+    List<User> findByUserId(User user);
 }

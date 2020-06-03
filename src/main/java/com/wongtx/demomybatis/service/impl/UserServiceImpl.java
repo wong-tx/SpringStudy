@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wongtx
@@ -76,5 +79,54 @@ public class UserServiceImpl implements UserService {
     public User saveThree(User user) {
         int i = userMapper.saveThree(user);
         return user;
+    }
+
+    @Override
+    public User findById(Integer id) {
+        User user = userMapper.findById(id);
+        return user;
+    }
+
+    @Override
+    public int bigSave() {
+        String key = "(phone ,insertdate ,msg)";
+        String values = "('xz',now(),'zg')";
+        return userMapper.bigSave(key, values);
+    }
+
+    @Override
+    public int bigBigSave() {
+        String sql = "insert into t_user (phone ,insertdate,msg,password) values('xz',now(),'从此不敢看观音','zg')";
+        return  userMapper.bigBigSave(sql);
+
+    }
+
+    @Override
+    public List findMap() {
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String format = dateFormat.format(date);
+        List map = userMapper.findMap(format);
+        return map;
+    }
+
+    @Override
+    public List foreach() {
+        int[] arr;
+        arr = new int[]{1,2,3};
+        List<User> byIdIn = userMapper.findByIdIn(arr);
+        return byIdIn;
+    }
+
+    @Override
+    public List<User> insertforeach(List<User> list) {
+        userMapper.insertforeach(list);
+        return list;
+    }
+
+    @Override
+    public List<User> findByUserId(User user) {
+        List<User> us = userMapper.findByUserId(user);
+        return us;
     }
 }

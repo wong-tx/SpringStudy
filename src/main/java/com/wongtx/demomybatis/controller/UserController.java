@@ -8,8 +8,7 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author wongtx
@@ -78,5 +77,78 @@ public class UserController {
     public User saveThree(@RequestBody User user){
      user = userService.saveThree(user);
      return user;
+    }
+
+    @PostMapping("/findById.do")
+    public User  findById(){
+    User user = userService.findById(1);
+     return user;
+    }
+
+    // 来票大的
+    @PostMapping("/ggdncf.do")
+    public R bigSave(){
+        int i = userService.bigSave();
+        User user = new User();
+        if (i>0){
+            user.setUserMsg("新增成功");
+        }
+        return R.setOK("成功",JSON.toJSONString(user));
+    }
+
+    // 来票更大的
+    @PostMapping("/xzgg.do")
+    public R bigBigSave(){
+        int i = userService.bigBigSave();
+        User user = new User();
+        if (i>0){
+            user.setUserMsg("新增成功");
+        }
+        return R.setOK("成功",JSON.toJSONString(user));
+    }
+
+
+    // 大map
+    @PostMapping("/map.do")
+    public R findMap(){
+        List map = userService.findMap();
+        List<User> list = new ArrayList();
+        if (map.size()> 0){
+            for (Object o : map) {
+                Map next = (Map) o;
+                User user = new User();
+                user.setUserPhone(next.get("userPhone")== null ? "" : next.get("userPhone").toString());
+
+                user.setUserMsg(next.get("userMsg") == null ? "" : next.get("userMsg").toString());
+                list.add(user);
+            }
+            return R.setOK("成功",JSON.toJSONString(list));
+        }
+        return R.setERROR("失败");
+    }
+
+    @GetMapping("/foreach.do")
+    public R foreach(){
+        List foreach = userService.foreach();
+        if (foreach.size() > 0) {
+            return R.setOK("成功",JSON.toJSONString(foreach));
+        }
+        return R.setERROR("失败");
+    }
+
+    @PostMapping("/insertforeach.do")
+    public R insertforeach(@RequestBody List<User> list){
+        List foreach = userService.insertforeach(list);
+        if (foreach.size() > 0) {
+            return R.setOK("成功",JSON.toJSONString(foreach));
+        }
+        return R.setERROR("失败");
+    }
+
+    @GetMapping("/findByUserId")
+    public List<User>  findByUserId(@RequestBody User user){
+        List<User> byUserId = userService.findByUserId(user);
+        return byUserId;
+
     }
 }

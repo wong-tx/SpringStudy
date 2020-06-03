@@ -4,6 +4,7 @@ import com.wongtx.demomybatis.entity.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wongtx
@@ -33,7 +34,7 @@ public interface UserMapper {
     Boolean findUser();
 
     //测试傳入和本身參數名不一致能否獲取  与传入参数一致即可
-    @Select("select * from t_user where id = #{userId}")
+    @Select("select id,phone as userPhone,insertdate as createDate,msg as userMsg,password as userPassWord, sex from t_user where id = #{userId}")
     User findUserbyId(Integer userId);
 
     // 测试xml
@@ -47,4 +48,25 @@ public interface UserMapper {
 
     // xml tag
     int saveThree(User user);
+
+    // xml 查询
+    User findById(Integer id);
+
+    //
+    @Insert("insert into t_user ${key} values ${values}")
+    int bigSave(String key,String values);
+
+    @Insert("${sql}")
+    int bigBigSave(String sql);
+
+    List findMap(String da);
+
+    //foreach标签
+    List<User> findByIdIn(int[] intIds);
+
+    void insertforeach(List<User> list);
+
+    // 测试传递对象
+    List<User> findByUserId(User user);
+
 }
