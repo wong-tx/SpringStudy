@@ -5,6 +5,7 @@ import com.wongtx.demomybatis.entity.User;
 import com.wongtx.demomybatis.mapper.UserMapper;
 import com.wongtx.demomybatis.service.UserService;
 import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,7 @@ import java.util.Map;
  */
 @Service
 @Transactional
+@Slf4j
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
@@ -128,5 +130,29 @@ public class UserServiceImpl implements UserService {
     public List<User> findByUserId(User user) {
         List<User> us = userMapper.findByUserId(user);
         return us;
+    }
+
+    @Override
+    public int findByMsg() {
+
+        int msg = userMapper.findByMsg("从此不敢看观音");
+        return msg;
+    }
+
+    @Override
+    public String findMsg() {
+        String msg = userMapper.findMsg("从此不敢看观音");
+        return msg;
+    }
+
+    @Override
+    public int insertuser() {
+        int i = 0;
+        try {
+            i = userMapper.insertUser("从此不敢看观音,今日份zsww");
+        } catch (Exception e) {
+            log.error("返回主键失败!");
+        }
+        return i;
     }
 }

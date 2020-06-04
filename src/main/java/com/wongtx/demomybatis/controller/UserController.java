@@ -151,4 +151,25 @@ public class UserController {
         return byUserId;
 
     }
+
+    @GetMapping("/findByMsg.do")
+    public User findByMsg(){
+        int byMsg = userService.findByMsg();
+        User user = new User();
+        if (byMsg > 0){
+            user.setUserMsg(byMsg+"");
+        }
+        return user;
+    }
+
+    @GetMapping("/findMsg.do")
+    public String findMsg(){
+    return userService.findMsg();
+    }
+
+    @PostMapping("/insertUSer.do")
+    public int insertUser(){
+        int insertuser = userService.insertuser();
+        return insertuser;
+    }
 }

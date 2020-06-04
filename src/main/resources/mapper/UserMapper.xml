@@ -2,6 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wongtx.demomybatis.mapper.UserMapper" >
 
+    <!-- 通过<resultMap>映射实体类属性名和表的字段名对应关系 -->
+    <resultMap id="UserMapper" type="com.wongtx.demomybatis.entity.User">
+        <!-- id属性来映射主键字段 -->
+        <id column="id" property="id" javaType="int"/>
+        <!-- result属性映射非主键字段 -->
+        <result column="phone" property="userPhone" javaType="String"/>
+        <result column="password" property="userPassWord" javaType="String"/>
+        <result column="msg" property="userMsg" javaType="String"/>
+        <result column="sex" property="sex" javaType="Byte"/>
+        <result column="insertdate" property="createDate" javaType="Date"/>
+    </resultMap>
+
+
     <!-- 获取记录 -->
     <select id="findAll" resultType="com.wongtx.demomybatis.entity.User">
      SELECT *
@@ -105,4 +118,19 @@
         select id,phone as userPhone,insertdate as createDate,msg as userMsg,password as userPassWord, sex from t_user
         where msg = #{userMsg}
     </select>
+
+    <select id="findMsg" resultType="String">
+        select msg from t_user where msg = #{msg}
+    </select>
+
+    <!-- useGeneratedKeys="true" 不传递对象，主键返回异常-->
+    <insert id="insertUser" keyProperty="id">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT id()
+        </selectKey>
+        insert into t_user (msg) values (#{userMsg})
+
+    </insert>
+
+
 </mapper>

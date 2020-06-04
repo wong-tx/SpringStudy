@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wongtx.demomybatis.mapper.XZGGMapper">
+
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="map.id">
+        <selectKey keyProperty="map.id" order="AFTER" resultType="int">
+            select LAST_INSERT_ID()
+        </selectKey>
+
+        insert into xzgg (msg,cp,createDate) values (#{map.msg},#{map.cp},now())
+    </insert>
+
+    <insert id="saveSecond">
+        insert into xzgg (msg,cp,createDate) values (#{user.userMsg},#{role.userTeacher},now())
+    </insert>
+
+    <select id="find" resultType="com.wongtx.demomybatis.entity.XZGG">
+
+        select id,msg,createDate,cp from xzgg where id = #{id}
+    </select>
+</mapper>

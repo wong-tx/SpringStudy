@@ -69,4 +69,11 @@ public interface UserMapper {
     // 测试传递对象
     List<User> findByUserId(User user);
 
+    @Select("select count(*) from t_user where msg = #{msg}")
+    int findByMsg(String msg);
+
+    String findMsg(String msg);
+
+    int insertUser(String msg);
+
 }

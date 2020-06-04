@@ -43,4 +43,10 @@ public interface UserService {
     List<User> insertforeach(List<User> list);
 
     List<User> findByUserId(User user);
+
+    int findByMsg();
+
+    String findMsg();
+
+   int insertuser( );
 }
