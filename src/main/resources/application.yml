@@ -5,16 +5,12 @@ server:
     context-path: /
 spring:
   datasource:
-#    username: root
-#    password: 906913
-#    url: jdbc:mysql://localhost:3306/mydatabase?useUnicode=true&useSSL=true&serverTimezone=Asia/Shanghai&characterEncoding=UTF8
-#    type: com.alibaba.druid.pool.DruidDataSource
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-    type: com.alibaba.druid.pool.xa.DruidXADataSource
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://172.16.1.52:1433;DatabaseName=testdingcangdb
-    username: zggftest
-    password: Zggfxxb2018
+    username: root
+    password: 906913
+    url: jdbc:mysql://localhost:3306/mydatabase?useUnicode=true&useSSL=true&serverTimezone=Asia/Shanghai&characterEncoding=UTF8
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
 #  SpringBoot + Mybatis 控制台查看执行的SQL日志
 mybatis:
   configuration:
