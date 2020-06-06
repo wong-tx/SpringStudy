@@ -16,6 +16,7 @@ public class XZGG {
     String msg;
     String cp;
     Date createDate;
+    String data;
 
 
 }

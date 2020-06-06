@@ -172,4 +172,12 @@ public class UserController {
         int insertuser = userService.insertuser();
         return insertuser;
     }
+
+    public static void main(String[] args) {
+        ArrayList<Object> objects = new ArrayList<>();
+        for (Object object : objects) {
+
+        }
+        System.err.println("测试");
+    }
 }
