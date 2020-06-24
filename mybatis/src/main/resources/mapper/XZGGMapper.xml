@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wongtx.demomybatis.mapper.XZGGMapper">
+
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="map.id">
+        <selectKey keyProperty="map.id" order="AFTER" resultType="int">
+            select LAST_INSERT_ID()
+        </selectKey>
+
+        insert into xzgg (msg,cp,createDate) values (#{map.msg},#{map.cp},now())
+    </insert>
+
+    <insert id="saveSecond">
+        insert into xzgg (msg,cp,createDate) values (#{user.userMsg},#{role.userTeacher},now())
+    </insert>
+
+    <select id="find" resultType="com.wongtx.demomybatis.entity.XZGG">
+
+        select id,msg,createDate,cp from xzgg where id = #{id}
+    </select>
+
+    <select id="findById" resultType="int">
+-- resultType 为集合中数据类型
+        select id  from xzgg where id = #{id}
+    </select>
+
+    <select id="findBymsg">
+-- 失败，多个结果无法返回。
+        select id  from xzgg where msg = #{msg}
+    </select>
+
+    <select id="findMap" resultType="java.util.HashMap">
+        select id  from xzgg where id = #{id}
+    </select>
+
+    <select id="findListMap" resultType="java.util.HashMap">
+        select id ,msg,cp ,createDate from xzgg where msg = #{msg}
+    </select>
+
+    <update id="updateMsg">
+        update xzgg set msg = #{msg},createDate = #{date} where id = #{id}
+
+    </update>
+
+    <select id="findCount" resultType="int">
+        select count(*) from xzgg
+        <if test='id!=null and id!="" '>
+        where id = #{id}
+        </if>
+    </select>
+
+    <!--mysql 不支持top-->
+    <select id="findTop" resultType="com.wongtx.demomybatis.entity.XZGG">
+        select top ${top} * from xzgg
+
+    </select>
+
+    <insert id="saveEntity" parameterType="com.wongtx.demomybatis.entity.XZGG">
+
+        insert into xzgg (msg,createDate,cp) values (#{dto.msg},getDate(),#{dto.cp})
+--mysql 是 now(), sqlServer 是getDate()
+    </insert>
+    <update id="updateEntity" parameterType="com.wongtx.demomybatis.entity.XZGG">
+        update xzgg set msg = #{dto.msg},createDate = #{dto.createDate} where id = #{dto.id}
+    </update>
+
+    <select id="findCp" resultType="Object">
+
+        select msg from xzgg where cp = #{cp}
+    </select>
+
+    <insert id="insert" parameterType="java.util.List">
+        INSERT INTO xzgg (msg,cp,createDate)
+        <foreach collection="list" open="VALUES" close=";" index="index" item="item" separator=",">
+            (#{item.msg},#{item.cp},now())
+
+        </foreach>
+    </insert>
+
+    <update id="insertEntity">
+update  xzgg set cp = #{cp},msg = #{msg} where id = #{id}
+   </update>
+
+    <select id="findAllObject" resultType="Object">
+        select id,msg,cp,createDate from xzgg
+    </select>
+
+    <select id="cesqubie" resultType="org.springframework.jdbc.support.rowset.SqlRowSet">
+        ${sql}
+    </select>
+    <select id="cesmap" resultType="map">
+        ${sql}
+    </select>
+
+    <select id="select" resultType="map">
+        select id,msg,cp,createDate,百闻一见 as datada  from xzgg
+    </select>
+
+    <select id="cesIf" parameterType="com.wongtx.demomybatis.entity.XZGG" resultType="map">
+        select id from xzgg where 1=1
+        <if test="id != null and  id != 0">
+            And id = #{id}
+        </if>
+        <!--<if test="id == 0">-->
+            <!--And id = #{id}-->
+        <!--</if>-->
+    </select>
+
+    <select id="getMap" resultType="map">
+        select id ,cp as xz,msg data ,百闻一见 szd from xzgg where id = #{id}
+    </select>
+
+    <select id="getDto" resultType="com.wongtx.demomybatis.entity.XZGG">
+        select * from xzgg where 1=1
+        <if test="id &gt; 10">
+            and id &gt; 10
+        </if>
+    </select>
+
+    <select id="getin" resultType="com.wongtx.demomybatis.entity.XZGG">
+        select * from xzgg where 1=1 and id  in(${ids})
+--         select * from xzgg where 1=1 and id  in(#{ids})
+
+    </select>
+<!--失败-->
+    <select id="cesins" resultType="com.wongtx.demomybatis.entity.XZGG">
+        select id ,cp ,
+        case when createDate is not null then CONVERT(varchar(100), createDate, 23) else '' end createDate startTime
+        from xzgg
+
+    </select>
+
+    <select id="cesBoolean" resultType="com.wongtx.demomybatis.entity.XZGG">
+        select *
+        from xzgg
+        <if test="flag == true">
+            where id > 12
+        </if>
+
+    </select>
+
+    <insert id="ins" parameterType="com.wongtx.demomybatis.entity.XZGG">
+         insert into xzgg (msg,createDate,cp) values (#{msg},now(),#{cp})
+    </insert>
+</mapper>
