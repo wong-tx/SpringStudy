@@ -19,7 +19,7 @@ import java.util.Map;
  * @date 2020/6/3 15:51
  */
 public interface XZGGMapper {
-
+    List<XZGG> xiaozhangege();
 
     int save(@Param("map") Map map);
 
@@ -96,4 +96,17 @@ public interface XZGGMapper {
     List<XZGG> cesins();
 
     List<XZGG> cesBoolean(Boolean flag);
+
+    int inssave(@Param("xzgg") XZGG xzgg,@Param("user") User user);
+
+    @Select("SELECT nullid  FROM `xzgg` WHERE id = 16")
+    String cesnull();
+
+    List<XZGG> cesin(List<String> ids );
+
+    boolean updatexxxzzz(int id);
+
+    String findByIdToString(int id);
+
+    int cessaveinsert(XZGG xzgg);
 }

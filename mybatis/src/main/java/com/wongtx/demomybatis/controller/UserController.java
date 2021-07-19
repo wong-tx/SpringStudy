@@ -71,6 +71,7 @@ public class UserController {
     public User saveSecond(@RequestBody User user){
 //        user.setCreateDate(new Date());
      user = userService.saveSecond(user);
+
      return user;
     }
 

@@ -10,6 +10,7 @@ import lombok.Data;
  */
 @Data
 public class Phone extends BasePad {
+
     @Override
     public void read() {
 
@@ -17,13 +18,14 @@ public class Phone extends BasePad {
 
     @Override
     public String study() {
-        return null;
+        return  "study";
     }
 
 
     @Override
     public void game() {
-
+        System.out.println("game");
     }
+
 
 }

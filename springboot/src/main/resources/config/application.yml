@@ -1,0 +1,7 @@
+server:
+  port: 1005
+#  访问路径
+  servlet:
+    context-path: /demo
+
+

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         userMapper.save(user);
+
         System.err.println(JSON.toJSONString(user));
 
     }
@@ -152,6 +154,25 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             log.error("返回主键失败!");
         }
+
+
+        List<String> oneList = new ArrayList<>();
+        String s = "id" ;
+        String s1 = "珠海";
+        String s2 = "何金荣";
+//        oneList.add(s);
+//        oneList.add(s1);
+//        oneList.add(s2);
+//
+//
+        List<String> twoList = new ArrayList<>();
+        String s3 = "珠海国码";
+        String s4 = "Hejinrong";
+//        twoList.add(s3);
+//        twoList.add(s4);
+        String str = "/";
+//        List<String> oneList = Arrays.asList(str.split("/"));
+        boolean b = oneList.stream().anyMatch(twoList::contains);
         return i;
     }
 }

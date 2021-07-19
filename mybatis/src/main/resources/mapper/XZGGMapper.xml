@@ -143,4 +143,39 @@ update  xzgg set cp = #{cp},msg = #{msg} where id = #{id}
     <insert id="ins" parameterType="com.wongtx.demomybatis.entity.XZGG">
          insert into xzgg (msg,createDate,cp) values (#{msg},now(),#{cp})
     </insert>
+
+    <insert id="inssave">
+        insert into xzgg (msg,createDate,cp) values (#{user.userMsg},now(),#{xzgg.cp})
+    </insert>
+
+    <!--ces in-->
+    <select id="cesin" resultType="com.wongtx.demomybatis.entity.XZGG">
+         select *
+        from xzgg
+        <where>
+        cp != 'bjyx'
+        and id IN
+            <foreach item="ids" index="index" collection="list"
+                     open="(" separator="," close=")"> #{ids}</foreach>
+        </where>
+
+    </select>
+
+
+    <select id="xiaozhangege" resultType="com.wongtx.demomybatis.entity.XZGG">
+        select id,msg,createDate as startTime from xzgg
+    </select>
+
+    <update id="updatexxxzzz">
+        update xzgg set msg = '测试啦' where  id = #{id}
+    </update>
+
+    <select id="findByIdToString" resultType="java.lang.String">
+        select id from xzgg where id = #{id}
+    </select>
+
+    <insert id="cessaveinsert" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+         insert into xzgg (msg,createDate,cp) values (#{msg},now(),#{cp})
+    </insert>
+
 </mapper>

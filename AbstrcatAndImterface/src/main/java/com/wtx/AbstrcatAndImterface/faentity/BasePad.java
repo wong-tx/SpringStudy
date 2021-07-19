@@ -19,7 +19,10 @@ public abstract class BasePad implements Computer{
     }
    public abstract void game();
 
-    void vodeo(){
+    /**
+     * 当然，也要考虑这个方法应该是public或protected的。如果是private的就一切免谈了。
+     */
+    public   void video(){
         System.out.println("video");
     }
 

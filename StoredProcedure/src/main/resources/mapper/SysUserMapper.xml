@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wtx.storedprocedure.mapper.SysUserMapper">
+<!--sqlserver 测试-->
+    <select id="selectUserById" statementType="CALLABLE" useCache="false">
+    {call select_user_by_id(
+        #{id, mode=IN},
+        #{userName, mode=OUT, jdbcType=VARCHAR},
+        #{userPassword, mode=OUT, jdbcType=VARCHAR},
+        #{userEmail, mode=OUT, jdbcType=VARCHAR},
+        #{userInfo, mode=OUT, jdbcType=VARCHAR},
+        #{headImg, mode=OUT, jdbcType=BLOB, javaType=_byte[]},
+        #{createTime, mode=OUT, jdbcType=TIMESTAMP}
+    )}
+</select>
+
+    <select id="insertces" parameterType="com.wtx.storedprocedure.entity.SysUser" resultType="com.wtx.storedprocedure.entity.SysUser">
+   DECLARE
+	@tempId INT
+SET @tempId = (
+	SELECT id
+	FROM sys_ces
+	WHERE user_name = #{userName}
+	and user_password = #{userPassword}
+)
+IF (@tempId IS NULL)
+BEGIN
+	INSERT INTO sys_ces (
+		user_name,
+		user_password
+	) OUTPUT INSERTED.id AS newId
+VALUES
+	(#{userName}, #{userPassword})
+END
+ELSE
+	BEGIN
+	SELECT @tempId AS oldId
+	END
+    </select>
+
+</mapper>
