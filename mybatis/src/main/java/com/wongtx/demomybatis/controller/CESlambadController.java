@@ -26,4 +26,11 @@ public class CESlambadController {
         List<Integer> list = Stream.of(18, 19).collect(toList());
         list.forEach(id ->xzggMapper.updatexxxzzz(id));
     }
+
+    @PostMapping("/cesFloat.do")
+    public void cesFloat(){
+        Float aFloat = xzggMapper.cesFloat();
+        boolean b = null == aFloat;
+        System.out.println(b);
+    }
 }

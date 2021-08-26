@@ -109,4 +109,7 @@ public interface XZGGMapper {
     String findByIdToString(int id);
 
     int cessaveinsert(XZGG xzgg);
+
+    @Select("SELECT nullid  FROM `xzgg` WHERE id = 17")
+    Float cesFloat();
 }
